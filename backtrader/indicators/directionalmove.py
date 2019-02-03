@@ -256,7 +256,7 @@ class AverageDirectionalMovementIndex(_DirectionalIndicator):
     '''
     alias = ('ADX',)
 
-    lines = ('adx',)
+    lines = ('adx','plusDI', 'minusDI',)
 
     plotlines = dict(adx=dict(_name='ADX'))
 
@@ -265,6 +265,8 @@ class AverageDirectionalMovementIndex(_DirectionalIndicator):
 
         dx = abs(self.DIplus - self.DIminus) / (self.DIplus + self.DIminus)
         self.lines.adx = 100.0 * self.p.movav(dx, period=self.p.period)
+        self.lines.minusDI = self.DIminus
+        self.lines.plusDI = self.DIplus
 
 
 class AverageDirectionalMovementIndexRating(AverageDirectionalMovementIndex):
